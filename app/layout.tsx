@@ -1,10 +1,10 @@
-import './globals.css';
-import { ReactNode } from 'react';
+import './globals.css'
+import { ReactNode } from 'react'
 
 export const metadata = {
   title: 'พรีออเดอร์เสื้อ - DY ESAN SHOP',
   description: 'เว็บไซต์พรีออเดอร์เสื้อ DY ESAN SHOP',
-};
+}
 
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
@@ -13,17 +13,31 @@ export default function RootLayout({ children }: { children: ReactNode }) {
         {/* Header */}
         <header className="bg-black/80 backdrop-blur-md shadow-2xl sticky top-0 z-50 border-b border-gray-700">
           <div className="max-w-6xl mx-auto px-4 py-4 flex items-center justify-between">
+            {/* Logo */}
             <div className="flex items-center space-x-2">
-              <div className="w-10 h-10">
+              <div className="w-10 h-10 flex items-center justify-center">
                 <img
                   src="https://img5.pic.in.th/file/secure-sv1/448205987_. _. 819_n-removebg-preview.png"
                   alt="DY ESAN SHOP Logo"
                   className="w-full h-full object-contain"
+                  onError={(e) => {
+                    const el = e.currentTarget
+                    el.style.display = 'none'
+                    const fallback = el.nextElementSibling as HTMLElement
+                    if (fallback) fallback.style.display = 'flex'
+                  }}
                 />
+                <div
+                  className="w-10 h-10 bg-gradient-to-r from-red-500 to-orange-500 rounded-full flex items-center justify-center"
+                  style={{ display: 'none' }}
+                >
+                  <span className="text-white font-bold text-lg">DY</span>
+                </div>
               </div>
               <h1 className="text-2xl font-bold text-white">DY ESAN SHOP</h1>
             </div>
 
+            {/* Navigation */}
             <nav className="hidden md:flex space-x-6">
               <a href="/" className="text-gray-300 hover:text-red-400 transition-colors">
                 หน้าหลัก
@@ -41,7 +55,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
           </div>
         </header>
 
-        {/* Main content */}
+        {/* Main Content */}
         <main className="max-w-6xl mx-auto px-4 py-8">{children}</main>
 
         {/* Footer */}
@@ -65,5 +79,5 @@ export default function RootLayout({ children }: { children: ReactNode }) {
         </footer>
       </body>
     </html>
-  );
+  )
 }
